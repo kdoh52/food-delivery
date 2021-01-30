@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useHistory } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Typography, Select, MenuItem, Button, InputLabel, FormControl } from "@material-ui/core";
 import API from '../utils/API'
@@ -61,36 +60,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Signup() {
     const classes = useStyles();
-    const [role, setRole] = useState('');
+    // const [role, setRole] = useState('');
     const [formObject, setFormObject] = useState([]);
-    const history = useHistory();
-
 
     function handleInputChange(e) {
         const { name, value } = e.target;
         setFormObject({ ...formObject, [name]: value });
     }
 
-    function handleRoleChange(event) {
-        setRole(event.target.value);
-        setFormObject({ ...formObject, 'role': role });
-    };
-
     function handleSubmit(event) {
         event.preventDefault();
 
         console.log(formObject)
-        console.log(role)
-        setFormObject({ ...formObject, 'role': role }, registerUser(formObject));
-        // console.log(formObject)
-        // registerUser(formObject);
     };
 
     function registerUser(userData) {
         // console.log(userData)
         if (userData.firstName && userData.lastName && userData.email && userData.phone && userData.role) {
             API.saveUser(userData)
-            .then(history.push("/login"))
+            .then(console.log('signed up'))
             .catch((err) => console.log(err));
         } else {
             console.log('reject')
@@ -103,33 +91,10 @@ export default function Signup() {
             <div className={classes.container}>
                 <div className={classes.child}>
                     <Typography className={classes.title} variant='h2'>
-                        Sign up
+                        Log In
                     </Typography>
                     <br />
                     <form>
-                        <TextField
-                        //   variant="filled"
-                        className={classes.field}
-                        margin="normal"
-                        required
-                        //   fullWidth
-                        id="firstName"
-                        onChange={handleInputChange}
-                        name="firstName"
-                        //   autoFocus
-                        label="First Name"
-                        />
-                        <br/>
-                        <TextField
-                        className={classes.field}
-                        margin="normal"
-                        required
-                        id="lastName"
-                        onChange={handleInputChange}
-                        name="lastName"
-                        label="Last Name"
-                        />
-                        <br/>
                         <TextField
                         className={classes.field}
                         margin="normal"
@@ -139,6 +104,7 @@ export default function Signup() {
                         name="email"
                         label="Email"
                         />
+                        <br/>
                         <TextField
                         className={classes.field}
                         margin="normal"
@@ -150,38 +116,12 @@ export default function Signup() {
                         label="Password"
                         />
                         <br/>
-                        <TextField
-                        className={classes.field}
-                        margin="normal"
-                        required
-                        id="phone"
-                        onChange={handleInputChange}
-                        name="phone"
-                        label="Phone"
-                        />
-                        <br/>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-label">Role*</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-filled-label"
-                                id="demo-simple-select-filled"
-                                required
-                                id="role"
-                                value={role}
-                                onChange={handleRoleChange}
-                                name="role"
-                                label="Role"
-                                >
-                                <MenuItem value="ordering">Ordering</MenuItem>
-                                <MenuItem value="delivering">Delivering</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <Button onClick={handleSubmit} className={classes.button} variant="contained">Sign up</Button>
+                        <Button onClick={handleSubmit} className={classes.button} variant="contained">Login</Button>
                     </form>
                     <Typography className={classes.sidenote} variant='p'>
-                        Already have an account? 
+                        Create an account?
                         <br/>
-                        <a href='/login'>Log in</a>
+                        <a href='/'>Sign up</a>
                     </Typography>
                 </div>
             </div>
