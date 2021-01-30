@@ -88,7 +88,7 @@ export default function Signup() {
 
     function registerUser(userData) {
         // console.log(userData)
-        if (userData.firstName && userData.lastName && userData.email && userData.phone && userData.role) {
+        if (userData.firstName && userData.lastName && userData.email && userData.password && userData.phone && userData.role) {
             API.saveUser(userData)
             .then(history.push("/login"))
             .catch((err) => console.log(err));

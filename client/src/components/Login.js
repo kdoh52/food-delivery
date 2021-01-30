@@ -72,18 +72,8 @@ export default function Signup() {
         event.preventDefault();
 
         console.log(formObject)
+        // API.getUsers()
     };
-
-    function registerUser(userData) {
-        // console.log(userData)
-        if (userData.firstName && userData.lastName && userData.email && userData.phone && userData.role) {
-            API.saveUser(userData)
-            .then(console.log('signed up'))
-            .catch((err) => console.log(err));
-        } else {
-            console.log('reject')
-        }
-    }
 
     return (
         <div>
