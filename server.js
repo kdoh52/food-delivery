@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const passport = require("passport");
 require("dotenv").config();
 
 const mongoose = require("mongoose");
@@ -13,13 +14,13 @@ app.use(cors());
 app.use(express.json());
 
 // pass the passport middleware
-// app.use(passport.initialize());
+app.use(passport.initialize());
 
 // load passport strategies
-// const localSignupStrategy = require("./passport/local-signup");
-// const localLoginStrategy = require("./passport/local-login");
-// passport.use("local-signup", localSignupStrategy);
-// passport.use("local-login", localLoginStrategy);
+const localSignupStrategy = require("./passport/local-signup");
+const localLoginStrategy = require("./passport/local-login");
+passport.use("local-signup", localSignupStrategy);
+passport.use("local-login", localLoginStrategy);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
