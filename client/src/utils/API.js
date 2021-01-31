@@ -11,6 +11,9 @@ export default {
     signupUser: function (body) {
         return axios.post("/auth/signup", body);
     },
+    loginUser: function (body) {
+        return axios.post("/auth/login", body);
+    },
     deleteUser: function(id) {
         return axios.delete("/api/users/" + id);
     }

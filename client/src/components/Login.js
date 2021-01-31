@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Typography, Select, MenuItem, Button, InputLabel, FormControl } from "@material-ui/core";
 import API from '../utils/API'
+import { useHistory } from "react-router-dom";
+import Auth from "../Auth";
 import Navbar from './Navbar';
 
 const useStyles = makeStyles((theme) => ({
@@ -58,10 +60,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Signup() {
+export default function Login() {
     const classes = useStyles();
     // const [role, setRole] = useState('');
     const [formObject, setFormObject] = useState([]);
+    const history = useHistory();
+
 
     function handleInputChange(e) {
         const { name, value } = e.target;
@@ -73,6 +77,22 @@ export default function Signup() {
 
         console.log(formObject)
         // API.getUsers()
+        if (formObject.password && formObject.email) {
+            API.loginUser({
+              password: formObject.password,
+              email: formObject.email,
+            })
+              .then((res) => {
+                console.log(res);
+                // save the token
+                Auth.authenticateUser(res.data.token);
+                // localStorage.setItem("user", JSON.stringify(res.data.user));
+                history.push("/profile");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+        }
     };
 
     return (
