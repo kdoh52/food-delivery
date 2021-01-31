@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { UserContext } from '../contexts/UserContext'
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Typography, Select, MenuItem, Button, InputLabel, FormControl } from "@material-ui/core";
 import API from '../utils/API'
@@ -65,6 +66,7 @@ export default function Login() {
     // const [role, setRole] = useState('');
     const [formObject, setFormObject] = useState([]);
     const history = useHistory();
+    const { user, setUser } = useContext(UserContext);
 
 
     function handleInputChange(e) {
@@ -83,10 +85,16 @@ export default function Login() {
               email: formObject.email,
             })
               .then((res) => {
-                console.log(res);
+                // console.log(res.data.user);
+                console.log(JSON.stringify(res.data.user.user));
+                console.log(formObject);
                 // save the token
                 Auth.authenticateUser(res.data.token);
                 // localStorage.setItem("user", JSON.stringify(res.data.user));
+                // setUser(res.data.user.user)
+                setUser(JSON.stringify(res.data.user.user))
+                // setUser('success')
+
                 history.push("/profile");
               })
               .catch((err) => {
