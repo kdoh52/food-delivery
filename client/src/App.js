@@ -6,6 +6,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import History from "./components/History";
+import NewOrder from "./components/NewOrder";
 import { UserContext } from "./contexts/UserContext";
 
 
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/login" component={Login}/>
           <Route exact path="/profile" component={Profile}/>
           <Route exact path="/history" component={History}/>
+          <Route exact path="/order" component={NewOrder}/>
         </UserContext.Provider>
       </Switch>
     </Router>

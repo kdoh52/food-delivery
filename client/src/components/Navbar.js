@@ -36,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
     },
     {
       // listIcon: <AccountCircle />,
+      listText: "New order",
+      listPath: "/order",
+    },
+    {
+      // listIcon: <AccountCircle />,
       listText: "Order history",
       listPath: "/history",
     },
