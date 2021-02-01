@@ -41,16 +41,13 @@ export default function Profile() {
             <div className={classes.container}>
                 <div className={classes.child}>
                     <Typography className={classes.heading} variant="h2">
-                        {userData.firstName}'s Profile
+                        Order history
                     </Typography>
                     <br/>
                     <Typography className={classes.details} variant="h2">
-                        email: {userData.email}
+                        {userData.firstName}'s past orders
                     </Typography>
                     <br/>
-                    <Typography className={classes.details} variant="h2">
-                        phone: {userData.phone}
-                    </Typography>
                 </div>
             </div>
         </div>
