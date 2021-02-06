@@ -8,7 +8,9 @@ import Profile from "./components/Profile";
 import History from "./components/History";
 import NewOrder from "./components/NewOrder";
 import { UserContext } from "./contexts/UserContext";
+import { Provider } from 'react-redux';
 
+import store from './store'
 
 function App() {
   const [user, setUser] = useState();
@@ -16,17 +18,19 @@ function App() {
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Signup}/>
-        <UserContext.Provider value={value}>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/profile" component={Profile}/>
-          <Route exact path="/history" component={History}/>
-          <Route exact path="/order" component={NewOrder}/>
-        </UserContext.Provider>
-      </Switch>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Signup}/>
+          <UserContext.Provider value={value}>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/history" component={History}/>
+            <Route exact path="/order" component={NewOrder}/>
+          </UserContext.Provider>
+        </Switch>
+      </Router>
+    </Provider>
   );
 }
 
