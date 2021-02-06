@@ -66,7 +66,7 @@ export default function Login() {
     // const [role, setRole] = useState('');
     const [formObject, setFormObject] = useState([]);
     const history = useHistory();
-    const { user, setUser } = useContext(UserContext);
+    // const { user, setUser } = useContext(UserContext);
 
 
     function handleInputChange(e) {
@@ -92,8 +92,7 @@ export default function Login() {
                 Auth.authenticateUser(res.data.token);
                 // localStorage.setItem("user", JSON.stringify(res.data.user));
                 // setUser(res.data.user.user)
-                setUser(JSON.stringify(res.data.user.user))
-                // setUser('success')
+                // setUser(JSON.stringify(res.data.user.user))
 
                 history.push("/profile");
               })

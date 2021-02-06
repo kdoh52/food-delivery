@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const passport = require("passport");
 require("dotenv").config();
 
@@ -9,9 +10,10 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // pass the passport middleware
 app.use(passport.initialize());

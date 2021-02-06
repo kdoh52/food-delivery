@@ -10,5 +10,9 @@ router.route("/")
 router.route("/:id")
   .delete(usersController.remove);
   
+//POST: localhost:3001/api/users/authenticate
+router.route("/authenticate")
+  .post(usersController.authenticate);
+
 
 module.exports = router;

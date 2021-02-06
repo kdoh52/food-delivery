@@ -13,24 +13,24 @@ import { Provider } from 'react-redux';
 import store from './store'
 
 function App() {
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState();
 
-  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+  // const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   return (
-    <Provider store={store}>
-      <Router>
+    <Router>
+      <Provider store={store}>
         <Switch>
           <Route exact path="/" component={Signup}/>
-          <UserContext.Provider value={value}>
+          {/* <UserContext.Provider value={value}> */}
             <Route exact path="/login" component={Login}/>
             <Route exact path="/profile" component={Profile}/>
             <Route exact path="/history" component={History}/>
             <Route exact path="/order" component={NewOrder}/>
-          </UserContext.Provider>
+          {/* </UserContext.Provider> */}
         </Switch>
-      </Router>
-    </Provider>
+      </Provider>
+    </Router>
   );
 }
 
